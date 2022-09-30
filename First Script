@@ -1,0 +1,95 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("BabaTunde", "DarkTheme")
+local Tab = Window:NewTab("AutoFarm")
+local Section = Tab:NewSection("Farm")
+Section:NewToggle("AutoTap", "TapsAutomatically", function(state)
+    if state then
+        _G.Click = true
+
+while wait() do
+    if _G.Click == true then
+game:GetService("ReplicatedStorage").Remotes.Tap:FireServer("Click")
+    end
+end
+    else
+        _G.Click = false
+
+while wait() do
+    if _G.Click == true then
+game:GetService("ReplicatedStorage").Remotes.Tap:FireServer("Click")
+    end
+end
+    end
+end)
+
+
+Section:NewToggle("AutoEgg", "Auto Opens Egg", function(state)
+    if state then
+        _G.AutoEgg = true
+    while _G.AutoEgg == true do 
+local args = {
+    [1] = "Rare Egg",
+    [2] = 1}
+game:GetService("ReplicatedStorage").Remotes.BuyEgg:InvokeServer(unpack(args))
+wait()
+end
+    else
+        _G.AutoEgg = false
+    while _G.AutoEgg == true do 
+local args = {
+    [1] = "Rare Egg",
+    [2] = 1}
+game:GetService("ReplicatedStorage").Remotes.BuyEgg:InvokeServer(unpack(args))
+wait()
+end
+    end
+end)
+
+Section:NewToggle("AutoEquipBest", "EquipBestPets", function(state)
+    if state then
+        _G.AutoEquipBest = true
+while _G.AutoEquipBest == true do
+    game:GetService("ReplicatedStorage").Remotes.EquipBest:InvokeServer()
+    wait()
+end
+
+    else
+        _G.AutoEquipBest = false
+while _G.AutoEquipBest == true do
+    game:GetService("ReplicatedStorage").Remotes.EquipBest:InvokeServer()
+    wait()
+end
+
+    end
+end)
+
+local Tab = Window:NewTab("Rebirth")
+local Section = Tab:NewSection("AutoRebirth")
+Section:NewToggle("AutoRebirth", "Rebirths Automatically", function(state)
+    if state then
+        _G.Rebirth = true
+
+while wait() do
+    if _G.Rebirth == true then
+    local args = {[1] = 1}
+    game:GetService("ReplicatedStorage").Remotes.Rebirth:FireServer(unpack(args))
+    end
+end
+    else
+        _G.Rebirth = false
+
+while wait() do
+    if _G.Rebirth == true then
+    local args = {[1] = 1}
+    game:GetService("ReplicatedStorage").Remotes.Rebirth:FireServer(unpack(args))
+    end
+end
+    end
+end)
+
+
+local Tab = Window:NewTab("Credits")
+local Section = Tab:NewSection("Credits")
+Section:NewButton("Fortproniter#3550" , "Discord Fortproniter#3550", function()
+    print("Fortproniter#3550")
+end)
